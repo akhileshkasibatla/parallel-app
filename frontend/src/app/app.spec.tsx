@@ -1,26 +1,23 @@
-import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import '@testing-library/jest-dom';
 import App from './app';
 
-describe('App', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
-    expect(baseElement).toBeTruthy();
-  });
+console.warn = () => {};
 
-  it('should have a greeting as the title', () => {
-    const { getAllByText } = render(
-      <BrowserRouter>
+describe('App component', () => {
+  it('renders AddInvestor component with form fields', () => {
+    render(
+      <MemoryRouter>
         <App />
-      </BrowserRouter>
+      </MemoryRouter>,
     );
+
+    // Check for expected form fields from AddInvestor
+    expect(screen.getByLabelText(/first name/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/last name/i)).toBeInTheDocument();
     expect(
-      getAllByText(new RegExp('Welcome partner-react-app', 'gi')).length > 0
-    ).toBeTruthy();
+      screen.getByRole('button', { name: /add investor/i }),
+    ).toBeInTheDocument();
   });
 });
