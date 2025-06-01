@@ -6,6 +6,25 @@ This project is a full-stack application with:
 - Frontend: [React](https://reactjs.org/) (in `frontend/`)
 - Database: PostgreSQL via Docker
 
+## Completed Deliverables
+
+The following features and tasks were completed as part of this project:
+
+- **Developed a web application** that allows users to input personal information about investor and upload at least one file via form for the investor.
+- **Utilized Docker** to provision and run a PostgreSQL database for backend integration and data persistence.
+- **Form submission functionality**: users can add an investor by submitting the form, and immediately begin entering the next investor's information. Uploaded files are saved to the server's file system.
+- **Implemented unit tests** on the frontend to ensure component reliability and basic form behavior.
+
+
+## Future Enhancements If Time Permitted
+
+If time permitted, I would have considered implementing the following features:
+
+- **Progress Bar UI**: Visual feedback for file uploads with smooth percentage transitions and color changes (e.g., red → orange → green) to enhance user experience. Implement server-side streaming in NestJS to handle file uploads over sockets for optimized large file support.
+- **Authentication and Authorization**: Secure access to the form and backend APIs using JWT or OAuth-based mechanisms.
+- Detect and update the address if a new user shares an existing one, rather than duplicating entries.
+
+
 
 ## Prerequisites
 
