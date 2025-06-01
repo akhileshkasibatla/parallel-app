@@ -1,8 +1,9 @@
-# Project Created Using NestJS, Docker, PostgreSQL
+# Project Created Using NestJS, Docker, PostgreSQL and React
 
-This project created with:
+This project is a full-stack application with:
 
 - Backend: [NestJS](https://nestjs.com/) (in `backend/`)
+- Frontend: [React](https://reactjs.org/) (in `frontend/`)
 - Database: PostgreSQL via Docker
 
 
@@ -58,6 +59,8 @@ npm install --legacy-peer-deps
 npm run start:dev
 ```
 
+> Backend server will be started at http://localhost:3000
+
 ### 5. Reset the DB (Optional)
 
 If you want to reset the database completely:
@@ -65,4 +68,54 @@ If you want to reset the database completely:
 ```bash
 docker-compose down -v
 docker-compose up
+```
+
+```bash
+cd frontend
+npm install
+npm run start
+```
+
+> Navigate to http://localhost:4200 to open react application in browser
+
+## Available Endpoints
+
+> There are only two endpoints available in the backend:
+
+### `GET /users`
+
+- Returns a list of all users stored in the db.
+- No parameters are required.
+
+#### Example `curl` command:
+
+```bash
+curl http://localhost:3000/users
+```
+
+### `POST /users`
+
+- **Creates a new user**
+- Expects a `multipart/form-data` request
+- Accepts the following fields (all required):
+  - `firstName`
+  - `lastName`
+  - `dateOfBirth`
+  - `phoneNumber`
+  - `streetAddress`
+  - `zipcode`
+- Also accepts a `file` field (images, documents etc...).
+- The uploaded file is stored in the backend server’s file system.
+
+#### Example `curl` command:
+
+```bash
+curl -X POST http://localhost:3000/users \
+  -F "firstName=Alan" \
+  -F "lastName=Donald" \
+  -F "dateOfBirth=1980-07-15" \
+  -F "phoneNumber=123-456-7890" \
+  -F "streetAddress=123 Main St" \
+  -F "zipcode=12345" \
+  -F "file=@/path/to/file.jpg"
 ```
